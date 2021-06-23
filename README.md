@@ -36,6 +36,18 @@ flutter emulators #to discovers connected and emulated devices (AVD Manager)
 flutter run
 ```
 
+## Packages
+
+Add packages in file 'pubspec.yaml' in depedencies section.
+
+![Dependencies](docs/packages.png)
+
+You can run command to download packages :
+
+```
+flutter pub get
+```
+
 ### Errors
 
 * Could not open settings generic class cache for settings file. Install Java 8. (Gradle 6.7 compatible Java 8 => 15) (Gradle 7.x compatible Java 8 => 16)
