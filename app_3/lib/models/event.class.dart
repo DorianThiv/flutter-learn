@@ -60,9 +60,9 @@ class Event {
         code: json['code'],
         description: json['description'],
         type: json['type'],
-        dateStart: json['dateStart'],
-        dateEnd: json['dateEnd'],
-        confidentiality: json['confidentiality'],
+        dateStart: DateTime.parse(json['dateStart']),
+        dateEnd: DateTime.parse(json['dateEnd']),
+        confidentiality: EventConfidentiality.values[json['confidentiality']],
         secretCode: json['secretCode'],
         image: json['image'],
         links: json['links'],
@@ -75,7 +75,7 @@ class Event {
         latitude: json['latitude'],
         longitude: json['longitude'],
         userId: json['userId'],
-        user: userFromJson(json['user']),
+        user: User.fromJson(json['user']),
       );
 
   Map<String, dynamic> toJson() => {

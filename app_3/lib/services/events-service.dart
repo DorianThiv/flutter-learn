@@ -10,29 +10,29 @@ class EventsService {
   /// {@tool snippet}
   /// Hello
   /// {@end-tool}
-  Future<Event> getEventsByPosition(double latitude, double longitude, int ray) async {
+  Future<List<Event>> getEventsByPosition(double latitude, double longitude, int ray) async {
     try {
       debugPrint('getEventsByPosition() start');
       Uri uri = Uri.http('${NetworkService.host}', '${NetworkService.path}locations/position/events');
       debugPrint(uri.toString());
       final response = await http.post(
         uri,
-        // headers: NetworkService.headers,
+        headers: NetworkService.headers,
         body: jsonEncode({
           'latitude': latitude,
           'longitude': longitude,
           'ray': ray
         }),
       );
-      debugPrint(response.toString());
+      debugPrint(response.body.toString());
       if (response.statusCode == 200) {
-        var map = json.decode(response.body);
+        List<dynamic> events = json.decode(response.body);
         debugPrint('getEventsByPosition() end');
-        return Event.fromJson(map);
+        return events.map((e) => Event.fromJson(e)).toList();
       }
     } catch (error) {
       debugPrint(error.toString());
     }
-    return Future.value(null);
+    return Future.value([]);
   }
 }

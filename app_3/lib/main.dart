@@ -28,7 +28,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<Event>? _events;
+  late Future<List<Event>> _events;
+  final _biggerFont = const TextStyle(fontSize: 18.0);
 
   @override
   void initState() {
@@ -43,23 +44,32 @@ class _HomePageState extends State<HomePage> {
         title: Text('Flutter App Network'),
       ),
       body: Container(
-        child: FutureBuilder<Event>(
+        child: FutureBuilder<List<Event>>(
           future: _events,
           builder: (context, snapshot) {
             debugPrint('Hello 1');
             if (snapshot.hasData) {
-              return ListView.builder(itemBuilder: (context, index) {
-                debugPrint('Hello 2');
-                return new Container(
-                  height: 100,
-                  color: Colors.red,
-                );
-              });
+              return ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    Event event = snapshot.data?[index] as Event;
+                    return _buildRow(event);
+                  });
             } else {
               return Center(child: CircularProgressIndicator());
             }
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildRow(Event event) {
+    var name = event.name != null ? event.name.toString() : '';
+    return ListTile(
+      title: Text(
+        name,
+        style: _biggerFont,
       ),
     );
   }

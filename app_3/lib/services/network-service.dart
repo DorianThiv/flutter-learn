@@ -10,7 +10,7 @@ class NetworkService {
   static int uriport = 44342;
   static String path = '/api/';
   static String get host {
-    return '192.168.11.2:${uriport}';
+    return '192.168.1.31:${uriport}';
   }
 
   String proto = 'http:';
