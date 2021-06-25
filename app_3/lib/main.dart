@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:app_3/models/event.class.dart';
 import 'package:app_3/services/events-service.dart';
 import 'package:flutter/material.dart';
 
@@ -25,11 +28,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<Object> _events;
+  Future<Event>? _events;
 
   @override
   void initState() {
-    _events = EventsService().getEventsByPosition(45.188529, 5.724524, 10);
+    _events = EventsService().getEventsByPosition(45.188529, 5.724524, 100);
     super.initState();
   }
 
@@ -40,12 +43,17 @@ class _HomePageState extends State<HomePage> {
         title: Text('Flutter App Network'),
       ),
       body: Container(
-        child: FutureBuilder(
+        child: FutureBuilder<Event>(
           future: _events,
           builder: (context, snapshot) {
+            debugPrint('Hello 1');
             if (snapshot.hasData) {
               return ListView.builder(itemBuilder: (context, index) {
-                return new Container(height: 100, color: Colors.red);
+                debugPrint('Hello 2');
+                return new Container(
+                  height: 100,
+                  color: Colors.red,
+                );
               });
             } else {
               return Center(child: CircularProgressIndicator());
