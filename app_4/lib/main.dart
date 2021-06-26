@@ -31,9 +31,10 @@ class MyHomePage extends StatelessWidget {
   }
 
   FlutterMap buildFlutterMap() {
+    final initialPos = LatLng(45.188529, 5.724524);
     return FlutterMap(
       options: MapOptions(
-        center: LatLng(51.5, -0.09),
+        center: initialPos,
         zoom: 13.0,
       ),
       layers: [
@@ -45,14 +46,15 @@ class MyHomePage extends StatelessWidget {
         MarkerLayerOptions(
           markers: [
             Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(51.5, -0.09),
-                builder: (ctx) {
-                  return Container(
-                    child: FlutterLogo(),
-                  );
-                }),
+              width: 80.0,
+              height: 80.0,
+              point: initialPos,
+              builder: (ctx) {
+                return Container(
+                  child: FlutterLogo(),
+                );
+              },
+            ),
           ],
         ),
       ],
