@@ -33,8 +33,13 @@ Add git binaries in env. var. PATH
 flutter create app_name
 flutter devices #to show devices
 flutter emulators #to discovers connected and emulated devices (AVD Manager)
+flutter emulators --launch Pixel_2_API_27 #to launch an emulator
 flutter run
 ```
+
+## Tests
+
+[Google Tutoriel](https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0)
 
 ## Packages
 
