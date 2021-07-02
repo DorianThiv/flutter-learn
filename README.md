@@ -42,9 +42,11 @@ flutter run
 Enable deep links into the app.
 
 * For android update [AndroidManifest.xml](android/app/src/main/AndroidManifest.xml)
+
 ![Dependencies](docs/android-manifest-deep-links.png)
 
 * For iOS update [Info.plist](ios/Runner/Info.plist)
+
 ![Dependencies](docs/ios-list-deep-links.png)
 
 Execute an external deep link with adb.exe to get access at a private event.
